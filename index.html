@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Search App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>🎬 Movie Search</h1>
+
+      <form class="search">
+        <input
+          type="text"
+          class="search__input"
+          placeholder="Search for a movie..."
+          required
+        />
+        <button class="btn">Search</button>
+      </form>
+    </header>
+
+    <main class="layout">
+      <!-- RESULTS -->
+      <section class="panel results">
+        <h2>Results</h2>
+
+        <div class="results__list">
+          <!--
+        <div class="movie-card" data-id="tt123">
+          <img src="poster.jpg" />
+          <div>
+            <h3>Movie Title</h3>
+            <p>2023</p>
+          </div>
+        </div>
+        --></div>
+
+        <!-- PAGINATION -->
+        <div class="pagination">
+          <button class="btn pagination__btn--prev">← Prev</button>
+          <span class="pagination__page">Page 1</span>
+          <button class="btn pagination__btn--next">Next →</button>
+        </div>
+      </section>
+
+      <!-- MOVIE DETAILS -->
+      <section class="panel movie">
+        <h2>Movie Details</h2>
+
+        <div class="movie__details">
+          <!--
+        <img src="poster.jpg" />
+        <div class="movie__info">
+          <h3>Movie Title</h3>
+          <p><strong>Year:</strong> 2023</p>
+          <p><strong>Genre:</strong> Action</p>
+          <p><strong>Plot:</strong> ...</p>
+
+          <button class="btn btn--favorite">
+            ⭐ Save to Favorites
+          </button>
+        </div>
+        --></div>
+      </section>
+
+      <!-- FAVORITES -->
+      <section class="panel favorites">
+        <h2>⭐ Favorites</h2>
+
+        <div class="favorites__list">
+          <!--
+        <div class="favorite-item" data-id="tt123">
+          <span>Movie Title</span>
+          <button class="btn btn--remove">✕</button>
+        </div>
+        --></div>
+      </section>
+    </main>
+
+    <!-- STATES -->
+    <div class="overlay hidden">
+      <div class="loader">Loading...</div>
+    </div>
+  </body>
+</html>
