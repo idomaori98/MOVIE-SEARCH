@@ -4,7 +4,7 @@ const API_KEY = '7aa246197b82932d5adb284763498c4d';
 const showMovie = async function () {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${19995}?api_key=${API_KEY}&append_to_response=credits`
+      ` https://api.themoviedb.org/3/movie/${19995}?api_key=${API_KEY}&append_to_response=credits`
     );
     const data = await res.json();
 
