@@ -21,6 +21,7 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 const showMovie = async function () {
   try {
     const id = window.location.hash.slice(1);
+    if (!id) return;
     // 1) Loading movie
     renderSpinner(movieContainer);
     await wait(3000);
