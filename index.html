@@ -8,7 +8,7 @@
       href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
       rel="stylesheet"
     />
-    <!-- <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon" /> -->
+    <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="src/sass/main.scss" />
     <script type="module" src="src/js/controller.js"></script>
@@ -19,7 +19,7 @@
   <body>
     <div class="container">
       <header class="header">
-        <!-- <img src="src/img/logo.png" alt="Logo" class="header__logo" /> -->
+        <div class="header__logo">🎬 MovieFlix</div>
         <form class="search">
           <input
             type="text"
@@ -28,7 +28,7 @@
           />
           <button class="btn search__btn">
             <svg class="search__icon">
-              <!-- <use href="src/img/icons.svg#icon-search"></use> -->
+              <use href="src/img/icons.svg#icon-search"></use>
             </svg>
             <span>Search</span>
           </button>
@@ -39,7 +39,7 @@
             <li class="nav__item">
               <button class="nav__btn nav__btn--add-movie">
                 <svg class="nav__icon">
-                  <!-- <use href="src/img/icons.svg#icon-edit"></use> -->
+                  <use href="src/img/icons.svg#icon-edit"></use>
                 </svg>
                 <span>Add movie</span>
               </button>
@@ -47,7 +47,7 @@
             <li class="nav__item">
               <button class="nav__btn nav__btn--bookmarks">
                 <svg class="nav__icon">
-                  <!-- <use href="src/img/icons.svg#icon-bookmark"></use> -->
+                  <use href="src/img/icons.svg#icon-bookmark"></use>
                 </svg>
                 <span>Favorites</span>
               </button>
@@ -56,27 +56,13 @@
                   <div class="message">
                     <div>
                       <svg>
-                        <!-- <use href="src/img/icons.svg#icon-smile"></use> -->
+                        <use href="src/img/icons.svg#icon-smile"></use>
                       </svg>
                     </div>
                     <p>
                       No favorites yet. Find a great movie and favorite it :)
                     </p>
                   </div>
-
-                  <!-- <li class="preview">
-                    <a class="preview__link" href="#23456">
-                      <figure class="preview__fig">
-                        <img src="src/img/test-1.jpg" alt="Test" />
-                      </figure>
-                      <div class="preview__data">
-                        <h4 class="preview__name">
-                          Movie Title
-                        </h4>
-                        <p class="preview__year">2023</p>
-                      </div>
-                    </a>
-                  </li> -->
                 </ul>
               </div>
             </li>
@@ -94,127 +80,22 @@
             </div>
             <!-- <p>Start by searching for a movie. Have fun!</p> -->
           </div>
-
-          <!-- 
-          <li class="preview">
-            <a class="preview__link preview__link--active" href="#23456">
-              <figure class="preview__fig">
-                <img src="src/img/test-1.jpg" alt="Test" />
-              </figure>
-              <div class="preview__data">
-                <h4 class="preview__title">Movie Title ...</h4>
-                <p class="preview__year">2023</p>
-              </div>
-            </a>
-          </li>
-           -->
         </ul>
 
         <div class="pagination">
-          <!-- <button class="btn--inline pagination__btn--prev">
-            <svg class="search__icon">
-              <use href="src/img/icons.svg#icon-arrow-left"></use>
-            </svg>
-            <span>Page 1</span>
-          </button>
-          <button class="btn--inline pagination__btn--next">
-            <span>Page 3</span>
-            <svg class="search__icon">
-              <use href="src/img/icons.svg#icon-arrow-right"></use>
-            </svg>
-          </button> -->
+          <!-- Pagination buttons will go here -->
         </div>
-
-        <p class="copyright">
-          &copy; Copyright by
-          <a
-            class="twitter-link"
-            target="_blank"
-            href="https://twitter.com/jonasschmedtman"
-            >Jonas Schmedtmann</a
-          >. Adapted for movies.
-        </p>
       </div>
 
       <div class="movie">
         <div class="message">
           <div>
             <svg>
-              <!-- <use href="src/img/icons.svg#icon-smile"></use> -->
+              <use href="src/img/icons.svg#icon-smile"></use>
             </svg>
           </div>
           <p>Start by searching for a movie. Have fun!</p>
         </div>
-
-        <!-- <figure class="movie__fig">
-          <img src="src/img/test-1.jpg" alt="Tomato" class="movie__img" />
-          <h1 class="movie__title">
-            <span>Movie Title Here</span>
-          </h1>
-        </figure>
-
-        <div class="movie__details">
-          <div class="movie__info">
-            <svg class="movie__info-icon">
-              <use href="src/img/icons.svg#icon-clock"></use>
-            </svg>
-            <span class="movie__info-data movie__info-data--minutes">120</span>
-            <span class="movie__info-text">minutes</span>
-          </div>
-          <div class="movie__info">
-            <svg class="movie__info-icon">
-              <use href="src/img/icons.svg#icon-star"></use>
-            </svg>
-            <span class="movie__info-data movie__info-data--rating">8.5</span>
-            <span class="movie__info-text">rating</span>
-          </div>
-
-          <button class="btn--round btn--bookmark">
-            <svg class="">
-              <use href="src/img/icons.svg#icon-bookmark-fill"></use>
-            </svg>
-          </button>
-        </div>
-
-        <div class="movie__overview">
-          <h2 class="heading--2">Movie Overview</h2>
-          <p class="movie__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-          </p>
-        </div>
-
-        <div class="movie__details-info">
-          <h2 class="heading--2">Movie Information</h2>
-          <ul class="movie__details-list">
-            <li class="movie__detail">
-              <svg class="movie__icon">
-                <use href="src/img/icons.svg#icon-calendar"></use>
-              </svg>
-              <div class="movie__data">
-                <span class="movie__label">Release Date</span>
-                <span class="movie__value">2023-01-15</span>
-              </div>
-            </li>
-            <li class="movie__detail">
-              <svg class="movie__icon">
-                <use href="src/img/icons.svg#icon-user"></use>
-              </svg>
-              <div class="movie__data">
-                <span class="movie__label">Director</span>
-                <span class="movie__value">Director Name</span>
-              </div>
-            </li>
-            <li class="movie__detail">
-              <svg class="movie__icon">
-                <use href="src/img/icons.svg#icon-users"></use>
-              </svg>
-              <div class="movie__data">
-                <span class="movie__label">Cast</span>
-                <span class="movie__value">Actor 1, Actor 2, Actor 3</span>
-              </div>
-            </li>
-          </ul>
-        </div> -->
       </div>
     </div>
 
@@ -269,7 +150,7 @@ A computer hacker learns from mysterious rebels about the true nature of his rea
 
         <button class="btn upload__btn">
           <svg>
-            <!-- <use href="src/img/icons.svg#icon-upload-cloud"></use> -->
+            <use href="src/img/icons.svg#icon-upload-cloud"></use>
           </svg>
           <span>Upload</span>
         </button>
