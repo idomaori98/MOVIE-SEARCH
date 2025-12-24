@@ -1,9 +1,10 @@
-const movieContainer = document.querySelector('.movie');
-const API_KEY = '7aa246197b82932d5adb284763498c4d';
 import icons from 'url:../img/icons.svg';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import e from 'cors';
+import * as model from './model.js';
+
+const movieContainer = document.querySelector('.movie');
+//const API_KEY = '7aa246197b82932d5adb284763498c4d';
 
 const renderSpinner = function (parentEl) {
   const markup = `
@@ -16,39 +17,15 @@ const renderSpinner = function (parentEl) {
   parentEl.innerHTML = '';
   parentEl.insertAdjacentHTML('afterbegin', markup);
 };
-const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-
 const showMovie = async function () {
   try {
     const id = window.location.hash.slice(1);
     if (!id) return;
-    // 1) Loading movie
     renderSpinner(movieContainer);
-    await wait(3000);
-    const res = await fetch(
-      ` https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=credits`
-    );
-    const data = await res.json();
+    //1) Loading movie
+    await model.loadMovie(id);
+    const { movie } = model.state;
 
-    if (!res.ok) throw new Error(`${data.status_message} (${res.status})`);
-
-    console.log(res, data);
-    let movie = data;
-    movie = {
-      image: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-      actors: movie.credits.cast
-        .slice(0, 5) // Take first 5 actors
-        .map(actor => actor.name),
-      director:
-        movie.credits.crew.find(person => person.job === 'Director')?.name ||
-        'Unknown',
-      releaseDate: movie.release_date,
-      runTime: movie.runtime,
-      title: movie.title,
-      overview: movie.overview,
-      rating: movie.vote_average.toFixed(2),
-    };
-    console.log(movie);
     // 2) Rendering movie
     const markup = `
   <figure class="movie__fig">
@@ -125,7 +102,6 @@ const showMovie = async function () {
           </ul>
         </div> 
         `;
-    console.log(data);
     movieContainer.innerHTML = '';
     movieContainer.insertAdjacentHTML('afterbegin', markup);
   } catch (err) {
