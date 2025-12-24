@@ -3,6 +3,7 @@ const API_KEY = '7aa246197b82932d5adb284763498c4d';
 import icons from 'url:../img/icons.svg';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import e from 'cors';
 
 const renderSpinner = function (parentEl) {
   const markup = `
@@ -19,11 +20,12 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const showMovie = async function () {
   try {
+    const id = window.location.hash.slice(1);
     // 1) Loading movie
     renderSpinner(movieContainer);
     await wait(3000);
     const res = await fetch(
-      ` https://api.themoviedb.org/3/movie/${674}?api_key=${API_KEY}&append_to_response=credits`
+      ` https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=credits`
     );
     const data = await res.json();
 
@@ -129,5 +131,4 @@ const showMovie = async function () {
     alert(err);
   }
 };
-
-showMovie();
+['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showMovie));
