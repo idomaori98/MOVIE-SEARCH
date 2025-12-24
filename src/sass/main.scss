@@ -546,22 +546,6 @@ body {
     height: 32rem;
     position: relative;
     transform-origin: top;
-
-    &::before {
-      content: '';
-      display: block;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-image: linear-gradient(
-        to right bottom,
-        $color-grad-1,
-        $color-grad-2
-      );
-      opacity: 0.6;
-    }
   }
 
   &__img {
