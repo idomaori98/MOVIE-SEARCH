@@ -1,11 +1,12 @@
-const API_KEY = '7aa246197b82932d5adb284763498c4d';
+import { API_KEY, API_URL } from './config.js';
+
 export const state = {
   movie: {},
 };
 export const loadMovie = async function (id) {
   try {
     const res = await fetch(
-      ` https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=credits`
+      `${API_URL}${id}?api_key=${API_KEY}&append_to_response=credits`
     );
     const data = await res.json();
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
