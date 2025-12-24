@@ -1,6 +1,8 @@
 const movieContainer = document.querySelector('.movie');
 const API_KEY = '7aa246197b82932d5adb284763498c4d';
 import icons from 'url:../img/icons.svg';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 const renderSpinner = function (parentEl) {
   const markup = `
