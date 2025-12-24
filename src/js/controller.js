@@ -2,9 +2,24 @@ const movieContainer = document.querySelector('.movie');
 const API_KEY = '7aa246197b82932d5adb284763498c4d';
 import icons from 'url:../img/icons.svg';
 
+const renderSpinner = function (parentEl) {
+  const markup = `
+    <div class ="spinner">
+    <svg>
+    <use href= "${icons}#icon-loader"</use>
+    </svg>
+    </div>
+  `;
+  parentEl.innerHTML = '';
+  parentEl.insertAdjacentHTML('afterbegin', markup);
+};
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 const showMovie = async function () {
   try {
     // 1) Loading movie
+    renderSpinner(movieContainer);
+    await wait(3000);
     const res = await fetch(
       ` https://api.themoviedb.org/3/movie/${674}?api_key=${API_KEY}&append_to_response=credits`
     );
