@@ -16,9 +16,12 @@ const controlMovies = async function () {
     // 2) Rendering movie
     movieView.render(model.state.movie);
   } catch (err) {
-    alert(err);
+    movieView.renderError(err);
   }
 };
-['hashchange', 'load'].forEach(ev =>
-  window.addEventListener(ev, controlMovies)
-);
+
+const init = function () {
+  movieView.addHandlerRender(controlMovies);
+};
+
+init();

@@ -26,6 +26,6 @@ export const loadMovie = async function (id) {
     };
     console.log(state.movie);
   } catch (e) {
-    alert(e);
+    throw e;
   }
 };
