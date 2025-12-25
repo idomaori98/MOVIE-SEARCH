@@ -1,15 +1,14 @@
 import { API_KEY, API_URL } from './config.js';
+import { getJSON } from './helpers.js';
 
 export const state = {
   movie: {},
 };
 export const loadMovie = async function (id) {
   try {
-    const res = await fetch(
+    const data = await getJSON(
       `${API_URL}${id}?api_key=${API_KEY}&append_to_response=credits`
     );
-    const data = await res.json();
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
     const movie = data;
     state.movie = {
       image: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
