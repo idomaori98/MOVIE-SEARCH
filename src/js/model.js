@@ -48,6 +48,7 @@ export const loadSearchResult = async function (query) {
         releaseDate: movie.release_date,
       };
     });
+    console.log(state.search.results);
   } catch (err) {
     throw err;
   }

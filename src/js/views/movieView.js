@@ -1,73 +1,25 @@
 import icons from 'url:../../img/icons.svg';
+import View from './View.js';
 
-class MovieView {
-  #parentElement = document.querySelector('.movie');
-  #data;
-  #errorMessage = 'We could not find the movie. Please try another one!';
-  #message = '';
-  render(data) {
-    this.#data = data;
-    const markup = this._generateMarkup();
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
-
-  #clear() {
-    this.#parentElement.innerHTML = '';
-  }
-  renderSpinner() {
-    const markup = `
-      <div class ="spinner">
-      <svg>
-      <use href= "${icons}#icon-loader"</use>
-      </svg>
-      </div>
-    `;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
-  renderError(message = this.#errorMessage) {
-    const markup = `
-    <div class="error">
-      <div>
-        <svg>
-          <use href ="${icons}#icon-alert-triangle"></use>
-        </svg>
-      </div>
-    <p> ${message}</p>
-    </div>
-    `;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
-  renderMessage(message = this.#message) {
-    const markup = `
-    <div class="message">
-      <div>
-        <svg>
-          <use href ="${icons}#icon-smile"></use>
-        </svg>
-      </div>
-    <p> ${message}</p>
-    </div>
-    `;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
+class MovieView extends View {
+  _parentElement = document.querySelector('.movie');
+  _errorMessage = 'We could not find the movie. Please try another one!';
+  _message = '';
 
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
 
   _generateMarkup() {
+    //console.log(this.data);
     return `
       <figure class="movie__fig">
-            <img src="${this.#data.image}" alt="${
-      this.#data.title
+            <img src="${this._data.image}" alt="${
+      this._data.title
     }" class="movie__img" />
 
             <h1 class="movie__title">
-              <span>${this.#data.title}</span>
+              <span>${this._data.title}</span>
             </h1>
           </figure>
   
@@ -77,7 +29,7 @@ class MovieView {
                 <use href="${icons}#icon-clock"></use>
               </svg>
               <span class="movie__info-data movie__info-data--minutes">${
-                this.#data.runTime
+                this._data.runTime
               }</span>
               <span class="movie__info-text">minutes</span>
             </div>
@@ -86,7 +38,7 @@ class MovieView {
                 <use href="${icons}#icon-star"></use>
               </svg>
               <span class="movie__info-data movie__info-data--rating">${
-                this.#data.rating
+                this._data.rating
               }</span>
               <span class="movie__info-text">rating</span>
             </div>
@@ -101,7 +53,7 @@ class MovieView {
           <div class="movie__overview">
             <h2 class="heading--2">Movie Overview</h2>
             <p class="movie__description">
-              ${this.#data.overview}
+              ${this._data.overview}
             </p>
           </div>
   
@@ -114,7 +66,7 @@ class MovieView {
                 </svg>
                 <div class="movie__data">
                   <span class="movie__label">Release Date</span>
-                  <span class="movie__value">${this.#data.releaseDate}</span>
+                  <span class="movie__value">${this._data.releaseDate}</span>
                 </div>
               </li>
               <li class="movie__detail">
@@ -123,7 +75,7 @@ class MovieView {
                 </svg>
                 <div class="movie__data">
                   <span class="movie__label">Director</span>
-                  <span class="movie__value">${this.#data.director}</span>
+                  <span class="movie__value">${this._data.director}</span>
                 </div>
               </li>
               <li class="movie__detail">
@@ -132,7 +84,7 @@ class MovieView {
                 </svg>
                 <div class="movie__data">
                   <span class="movie__label">Cast</span>
-                  <span class="movie__value">${this.#data.actors.join(
+                  <span class="movie__value">${this._data.actors.join(
                     ', '
                   )}</span>
                 </div>

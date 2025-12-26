@@ -535,6 +535,29 @@ body {
     text-transform: uppercase;
     font-weight: 600;
   }
+
+  &__user-generated {
+    grid-column: 2;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 10rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: linear-gradient(
+      to right bottom,
+      $color-grad-1,
+      $color-grad-2
+    );
+
+    svg {
+      height: 1.2rem;
+      width: 1.2rem;
+      fill: #fff;
+    }
+  }
 }
 
 ////////////////////////////////////////
