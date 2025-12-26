@@ -1,8 +1,12 @@
-import { API_KEY, API_URL } from './config.js';
+import { API_KEY, API_URL, API_SEARCH } from './config.js';
 import { getJSON } from './helpers.js';
 
 export const state = {
   movie: {},
+  search: {
+    query: '',
+    results: [],
+  },
 };
 export const loadMovie = async function (id) {
   try {
@@ -24,8 +28,27 @@ export const loadMovie = async function (id) {
       overview: movie.overview,
       rating: movie.vote_average.toFixed(2),
     };
-    console.log(state.movie);
   } catch (e) {
     throw e;
+  }
+};
+
+export const loadSearchResult = async function (query) {
+  try {
+    state.search.query = query;
+    const data = await getJSON(`${API_SEARCH}${API_KEY}&query=${query}`);
+    state.search.results = data.results.map(movie => {
+      return {
+        id: movie.id,
+        rating: movie.rating,
+        title: movie.original_title,
+        image: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+        overview: movie.overview,
+        rating: movie.vote_average.toFixed(2),
+        releaseDate: movie.release_date,
+      };
+    });
+  } catch (err) {
+    throw err;
   }
 };
