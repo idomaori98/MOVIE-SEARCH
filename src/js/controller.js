@@ -5,6 +5,10 @@ import movieView from './views/movieView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 const controlMovies = async function () {
   try {
     const id = window.location.hash.slice(1);
@@ -12,7 +16,6 @@ const controlMovies = async function () {
     movieView.renderSpinner();
     //1) Loading movie
     await model.loadMovie(id);
-
     // 2) Rendering movie
     movieView.render(model.state.movie);
   } catch (err) {
@@ -28,13 +31,14 @@ const conrolSearchResults = async function () {
     if (!query) return;
 
     // 2) Load search results
-    await model.loadSearchResult(query);
+    const data = await model.loadSearchResult(query);
+    //console.log(data);
 
     // 3) Render results
     //console.log(model.state.search.results);
     resultsView.render(model.state.search.results);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 const init = function () {

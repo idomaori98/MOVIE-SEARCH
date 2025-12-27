@@ -37,6 +37,7 @@ export const loadSearchResult = async function (query) {
   try {
     state.search.query = query;
     const data = await getJSON(`${API_SEARCH}${API_KEY}&query=${query}`);
+    console.log(data);
     state.search.results = data.results.map(movie => {
       return {
         id: movie.id,
@@ -48,7 +49,6 @@ export const loadSearchResult = async function (query) {
         releaseDate: movie.release_date,
       };
     });
-    console.log(state.search.results);
   } catch (err) {
     throw err;
   }
