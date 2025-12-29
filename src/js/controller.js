@@ -38,7 +38,7 @@ const conrolSearchResults = async function () {
 
     // 3) Render results
     //console.log(model.state.search.results);
-    resultsView.render(model.getSearchResultsPage(3));
+    resultsView.render(model.getSearchResultsPage(1));
 
     // 4) Render the initial pagination buttons
     paginationView.render(model.state.search);
@@ -54,8 +54,20 @@ const controlPagination = function (gotToPage) {
   // 2) render new pagination buttons
   paginationView.render(model.state.search);
 };
+
+const controlAddBookmark = function () {
+  if (!model.state.movie.bookmarked) {
+    model.addBookmark(model.state.movie);
+  } else {
+    model.deleteBookmark(model.state.movie.id);
+  }
+
+  movieView.render(model.state.movie);
+};
+
 const init = function () {
   movieView.addHandlerRender(controlMovies);
+  movieView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(conrolSearchResults);
   paginationView._addHandlerClick(controlPagination);
 };

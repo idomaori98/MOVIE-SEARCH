@@ -9,6 +9,7 @@ export const state = {
     resultsPerPage: RES_PER_PAGE,
     page: 1,
   },
+  bookmarks: [],
 };
 export const loadMovie = async function (id) {
   try {
@@ -29,7 +30,11 @@ export const loadMovie = async function (id) {
       title: movie.title,
       overview: movie.overview,
       rating: movie.vote_average.toFixed(2),
+      id: movie.id,
     };
+
+    if (state.bookmarks.some(b => b.id === +id)) state.movie.bookmarked = true;
+    else state.movie.bookmarked = false;
   } catch (e) {
     throw e;
   }
@@ -51,6 +56,7 @@ export const loadSearchResult = async function (query) {
         releaseDate: movie.release_date,
       };
     });
+    state.search.page = 1;
   } catch (err) {
     throw err;
   }
@@ -61,4 +67,21 @@ export const getSearchResultsPage = function (page = state.search.page) {
   const start = (page - 1) * state.search.resultsPerPage;
   const end = page * state.search.resultsPerPage;
   return state.search.results.slice(start, end);
+};
+
+export const addBookmark = function (movie) {
+  // Add bookmark
+  state.bookmarks.push(movie);
+
+  //Mark current movie as bookmark
+  if (movie.id === state.movie.id) state.movie.bookmarked = true;
+};
+
+export const deleteBookmark = function (id) {
+  // Delete bookmark
+  const index = state.bookmarks.indexOf(el => el.id === id);
+  state.bookmarks.splice(index, 1);
+
+  //Mark current movie as unbookmark
+  if (id === state.movie.id) state.movie.bookmarked = false;
 };
