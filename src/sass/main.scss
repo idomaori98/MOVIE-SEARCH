@@ -475,6 +475,11 @@ body {
 
     &--active {
       background-color: $color-grey-light-1;
+
+      &:link,
+      &:visited {
+        background-color: $color-grey-light-1;
+      }
     }
   }
 

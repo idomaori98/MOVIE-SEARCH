@@ -7,15 +7,20 @@ import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
 
 const controlMovies = async function () {
   try {
     const id = window.location.hash.slice(1);
+    console.log('=== controlMovies ===');
+    console.log('Current hash:', id);
     if (!id) return;
     movieView.renderSpinner();
+    // 0)
+    resultsView.render(model.getSearchResultsPage());
+    bookmarksView.render(model.state.bookmarks);
     //1) Loading movie
     await model.loadMovie(id);
     // 2) Rendering movie
@@ -34,10 +39,8 @@ const conrolSearchResults = async function () {
 
     // 2) Load search results
     const data = await model.loadSearchResult(query);
-    //console.log(data);
 
     // 3) Render results
-    //console.log(model.state.search.results);
     resultsView.render(model.getSearchResultsPage(1));
 
     // 4) Render the initial pagination buttons

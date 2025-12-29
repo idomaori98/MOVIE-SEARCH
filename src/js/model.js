@@ -44,7 +44,6 @@ export const loadSearchResult = async function (query) {
   try {
     state.search.query = query;
     const data = await getJSON(`${API_SEARCH}${API_KEY}&query=${query}`);
-    console.log(data);
     state.search.results = data.results.map(movie => {
       return {
         id: movie.id,
@@ -78,8 +77,8 @@ export const addBookmark = function (movie) {
 };
 
 export const deleteBookmark = function (id) {
-  // Delete bookmark
-  const index = state.bookmarks.indexOf(el => el.id === id);
+  //  bookmark
+  const index = state.bookmarks.findIndex(el => el.id === id);
   state.bookmarks.splice(index, 1);
 
   //Mark current movie as unbookmark
