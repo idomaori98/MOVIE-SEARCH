@@ -76,12 +76,19 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const contorlAddMovie = function (newMovie) {
+  console.log(newMovie);
+
+  // Upload the new movie data
+};
+
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   movieView.addHandlerRender(controlMovies);
   movieView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(conrolSearchResults);
   paginationView._addHandlerClick(controlPagination);
+  addMovieView._addHandlerUpload(contorlAddMovie);
 };
 
 init();
