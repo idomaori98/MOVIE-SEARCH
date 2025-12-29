@@ -29,10 +29,11 @@ class AddMovieView extends View {
     this._window.classList.toggle('hidden');
   }
 
-  _addHandlerUpload(handler) {
+  addHandlerUpload(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
-      const data = [...new FormData(this)];
+      const dataArr = [...new FormData(this)];
+      const data = Object.fromEntries(dataArr);
       handler(data);
     });
   }

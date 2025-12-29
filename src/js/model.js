@@ -98,5 +98,43 @@ const init = function () {
   if (storge) state.bookmarks = JSON.parse(storge);
 };
 
+const clearBookmarks = function () {
+  localStorage.clear('bookmarks');
+};
+export const uploadMovie = async function (newMovie) {
+  try {
+    console.log('Form data received:', newMovie); // ✅ ADD THIS to see what you're getting
+
+    // Process the cast with safety check
+    const cast = newMovie.cast
+      ? newMovie.cast
+          .split(',')
+          .map(actor => actor.trim())
+          .filter(actor => actor !== '')
+      : []; // ✅ Default to empty array if cast is undefined
+
+    // Create the movie object
+    const movie = {
+      id: Date.now(), // Unique ID
+      title: newMovie.title,
+      image: newMovie.image,
+      overview: newMovie.overview,
+      rating: newMovie.rating ? +newMovie.rating : 'N/A',
+      runTime: newMovie.runtime ? +newMovie.runtime : 'N/A',
+      releaseDate: newMovie.releaseDate || 'N/A',
+      director: newMovie.director || 'Unknown',
+      actors: cast.length > 0 ? cast : ['Unknown'],
+      bookmarked: true, // Auto-bookmark user movies
+      key: true, // Mark as user-generated (shows user icon)
+    };
+
+    state.movie = movie;
+    addBookmark(state.movie);
+
+    console.log('Movie uploaded:', movie);
+  } catch (err) {
+    throw err;
+  }
+};
+
 init();
-console.log(state.bookmarks);
