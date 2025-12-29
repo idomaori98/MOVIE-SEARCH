@@ -4,8 +4,8 @@ import * as model from './model.js';
 import movieView from './views/movieView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
-import PagingationView from './views/paginationView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
 
 // if (module.hot) {
 //   module.hot.accept();
@@ -56,13 +56,17 @@ const controlPagination = function (gotToPage) {
 };
 
 const controlAddBookmark = function () {
+  // 1) Add/ Remove bookmarks
   if (!model.state.movie.bookmarked) {
     model.addBookmark(model.state.movie);
   } else {
     model.deleteBookmark(model.state.movie.id);
   }
-
+  // 2) Render movie view
   movieView.render(model.state.movie);
+
+  // 3) Render bookmarks
+  bookmarksView.render(model.state.bookmarks);
 };
 
 const init = function () {
