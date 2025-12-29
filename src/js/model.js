@@ -1,6 +1,10 @@
 import { API_KEY, API_URL, API_SEARCH, RES_PER_PAGE } from './config.js';
 import { getJSON } from './helpers.js';
 
+const persistBookmarks = function () {
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+};
+
 export const state = {
   movie: {},
   search: {
@@ -74,6 +78,8 @@ export const addBookmark = function (movie) {
 
   //Mark current movie as bookmark
   if (movie.id === state.movie.id) state.movie.bookmarked = true;
+
+  persistBookmarks();
 };
 
 export const deleteBookmark = function (id) {
@@ -83,4 +89,14 @@ export const deleteBookmark = function (id) {
 
   //Mark current movie as unbookmark
   if (id === state.movie.id) state.movie.bookmarked = false;
+  //
+  persistBookmarks();
 };
+
+const init = function () {
+  const storge = localStorage.getItem('bookmarks');
+  if (storge) state.bookmarks = JSON.parse(storge);
+};
+
+init();
+console.log(state.bookmarks);

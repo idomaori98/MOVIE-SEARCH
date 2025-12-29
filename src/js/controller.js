@@ -6,6 +6,7 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
+import addMovieView from './views/addMovieView.js';
 
 if (module.hot) {
   module.hot.accept();
@@ -14,8 +15,7 @@ if (module.hot) {
 const controlMovies = async function () {
   try {
     const id = window.location.hash.slice(1);
-    console.log('=== controlMovies ===');
-    console.log('Current hash:', id);
+
     if (!id) return;
     movieView.renderSpinner();
     // 0)
@@ -72,7 +72,12 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
+
 const init = function () {
+  bookmarksView.addHandlerRender(controlBookmarks);
   movieView.addHandlerRender(controlMovies);
   movieView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(conrolSearchResults);
